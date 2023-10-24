@@ -38,6 +38,8 @@ check_ADC = BooleanVar()
 check_DAC = BooleanVar()
 check_SA_SB = BooleanVar()
 check_ext_clock = BooleanVar()
+check_SW = BooleanVar()
+check_ConnectGPIO = BooleanVar()
 
 def get_diretorio_arquivos():
     diretorio = askdirectory()
@@ -182,6 +184,16 @@ def gerar_arquivo_qsf(diretorio=''):
         sa_sb_buffer = f.read()
         f.close()
 
+    if check_SW.get():
+        f = open('auxiliar/qsf/????.aux', 'r') ##MUDAR AQUI
+        SW_buffer = f.read()
+        f.close()
+
+    if  check_ConnectGPIO.get():
+        f = open('auxiliar/qsf/????.aux', 'r') ##MUDAR AQUI
+        check_connectGPIO_buffer = f.read()
+        f.close()
+
     with open(nome_arquivo, 'w') as qsf:
         qsf.write('#============================================================\n'
                   '# Build by Terasic System Builder\n'
@@ -279,8 +291,16 @@ def gerar_arquivo_qsf(diretorio=''):
             qsf.write(gpio_buffer)
             qsf.write('\n')
 
+        if check_SW.get():
+            qsf.write(SW_buffer)
+            qsf.write('\n')
+
         if check_SA_SB.get():
             qsf.write(sa_sb_buffer)
+            qsf.write('\n')
+
+        if check_ConnectGPIO.get():
+            qsf.write(check_connectGPIO_buffer)
             qsf.write('\n')
 
 
@@ -361,6 +381,92 @@ def gerar_arquivo_v(diretorio=''):
     v.write('//=======================================================\n//  Structural coding\n//=======================================================\n')
     v.write('\n\n\n\n')
     v.write('endmodule\n')
+    v.close()
+
+def gerar_arquivo_vhd(diretorio=''):
+    projeto = get_nome_do_projeto()
+    nome_arquivo = '{}.vhd'.format(projeto)
+    nome_arquivo = diretorio + '/' + nome_arquivo
+
+    v = open(nome_arquivo, 'w')
+    v.write('module {}(\n'.format(projeto))
+
+    if check_clock.get():
+        v.write('\t------------ CLOCK ----------\n')
+        v.write('\tADC_CLK_1O\t:in std_logic;\n\tMAX10_CLK1_50\t:in std_logic;,\n\tMAX10_CLK2_50\tin std_logic;\n')
+    if check_SDRAM_64.get():
+        v.write('\n\t------------ SDRAM ----------\n')
+        v.write('\tDRAM_ADDR\t\t       \t\t: out std_logic_vector(12 downto 0);\n')
+        v.write('\tDRAM_BA\t\t         \t\t: out std_logic_vector(1 downto 0);\n')
+        v.write('\tDRAM_CAS_N\t\t      \t\tDRAM_CAS_N,\n')
+        v.write('\tDRAM_CKE\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_CLK\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_CS_N\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_DQ\t\t        \t\t: inout std_logic_vector(15 downto 0);\n')
+        v.write('\tDRAM_LDQM\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_RAS_N\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_UDQM\t\t      \t\t: out std_logic;\n')
+        v.write('\tDRAM_WE_N\t\t      \t\t: out std_logic;\n')
+
+    if check_segmentos.get():
+        v.write('\n\t------------ SEG7 ----------\n')
+        v.write('\tHEX0\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+        v.write('\tHEX1\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+        v.write('\tHEX2\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+        v.write('\tHEX3\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+        v.write('\tHEX4\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+        v.write('\tHEX5\t\t \t\t: out std_logic_vector(7 downto 0);\n')
+
+    if check_chave.get():
+        v.write('\n\t------------ KEY ----------\n')
+        v.write('\tKEY\t\t  \t\t: in std_logic_vector(1 downto 0);\n')
+
+    if check_LED.get():
+        v.write('\n\t------------ LED ----------\n')
+        v.write('\tLEDR\t\t \t\t: out std_logic_vector(9 downto 0);\n')
+
+    if check_SW.get():
+        v.write('\n\t------------ SW ----------\n')
+        v.write('\tSW\t\t \t\t: in std_logic_vector(9 downto 0);\n')
+
+    if check_VGA.get():
+        v.write('\n\t------------ VGA ----------\n')
+        v.write('\tVGA_R\t\t      \t\t: out std_logic_vector(3 downto 0);\n')
+        v.write('\tVGA_G\t\t      \t\t: out std_logic_vector(3 downto 0);\n')
+        v.write('\tVGA_B\t\t      \t\t: out std_logic_vector(3 downto 0);\n')
+        v.write('\tVGA_HS\t\t      \t\t: out std_logic;\n')
+        v.write('\tVGA_VS\t\t      \t\t: out std_logic;\n')
+
+    if check_GPIO.get():
+        v.write('\n\t------------ Accelerometer ----------\n')
+        v.write('\tGSENSOR_CS_N\t\t      \t\t: out std_logic;\n')
+        v.write('\tGSENSOR_INT\t\t  \t\t: in std_logic_vector(2 downto 1);\n')
+        v.write('\tGSENSOR_SCLK\t\t      \t\t: out std_logic;\n')
+        v.write('\tGSENSOR_SDI\t\t      \t\t: inout std_logic;\n')
+        v.write('\tGSENSOR_SDO\t\t      \t\t: inout std_logic;\n')
+
+    if check_LCD.get():
+        v.write('\n\t------------ Arduino ----------\n')
+        v.write('\tARDUINO_IO\t\t          \t\t: inout std_logic_vector(15 downto 0);\n')
+        v.write('\tARDUINO_RESET_N\t\t      \t\t: inout std_logic;\n')
+
+    if check_ConnectGPIO.get():
+        v.write('\n\t------------ GPIO, GPIO connect to GPIO Default ----------\n')
+        v.write('\tSA_GPIO\t\t          \t\t: inout std_logic_vector(35 downto 0)\n')
+
+    v.write(');\n')
+    v.write('end entity DE10_LITE_FULL;\n')
+    v.write('\n')
+    v.write('architecture systembuilder of DE10_LITE_FULL is\n')
+    v.write('--=======================================================\n')
+    v.write('--  SIGNAL, CONSTANT, COMPONENT, FUNCTION declarations')
+    v.write('--=======================================================\n')
+    v.write('begin\n')
+    v.write('--=======================================================\n')
+    v.write('--  Structural coding\n')
+    v.write('--=======================================================\n')
+    v.write('\n\n')
+    v.write('--=======================================================\n')
     v.close()
 
 
