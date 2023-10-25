@@ -7,7 +7,7 @@ dois kits diferentes o DE10_LITE e o MERCURIOIV, esse projeto é para a discipli
 de Laboratório de Sistemas Digitais I da USP de São Carlos do curso de Engenharia
 Elétrica e tem como intuito ajudar na reestruturação dessa disciplina.
 
-#Características do Projeto
+# Características do Projeto
 
 O projeto conta com uma interface que é possível colocar o nome do projeto e assinalar
 quais as características que desejar implementar no projeto base que será gerado de maneira
