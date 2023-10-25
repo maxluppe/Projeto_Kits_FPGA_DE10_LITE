@@ -185,12 +185,12 @@ def gerar_arquivo_qsf(diretorio=''):
         f.close()
 
     if check_SW.get():
-        f = open('auxiliar/qsf/????.aux', 'r') ##MUDAR AQUI
+        f = open('auxiliar/qsf/SW.aux', 'r') ##MUDAR AQUI
         SW_buffer = f.read()
         f.close()
 
     if  check_ConnectGPIO.get():
-        f = open('auxiliar/qsf/????.aux', 'r') ##MUDAR AQUI
+        f = open('auxiliar/qsf/GPIO.aux', 'r') ##MUDAR AQUI
         check_connectGPIO_buffer = f.read()
         f.close()
 
@@ -496,6 +496,7 @@ def gerar_codigo():
     gerar_arquivo_qsf(diretorio)
     gerar_arquivo_sdc(diretorio)
     gerar_arquivo_v(diretorio)
+    gerar_arquivo_vhd(diretorio)
 
 
 def gerar_botoes_rodape(frame, padding_x=40, ipad_x=10):
@@ -533,7 +534,9 @@ def get_estados():
         'check_LED_RGB': check_LED_RGB.get(),
         'check_ADC': check_ADC.get(),
         'check_DAC': check_DAC.get(),
-        'check_SA_SB': check_SA_SB.get()
+        'check_SA_SB': check_SA_SB.get(),
+        'check_SW' : check_SW(),
+        'check_ConnectGPIO':check_ConnectGPIO()
     }
 
     tipo_do_arquivo = (('text files', '.json'), ('All files', '*.*'))
@@ -572,6 +575,8 @@ def set_estados():
     check_ADC.set(data['check_ADC'])
     check_DAC.set(data['check_DAC'])
     check_SA_SB.set(data['check_SA_SB'])
+    check_SW.set(data['check_SW'])
+    check_ConnectGPIO.set(data['check_ConnectGPIO'])
 
 
 frame_selecao = LabelFrame(window, width=350, height=410, text="Configurações do Sistema")
@@ -597,6 +602,7 @@ criar_selecao('Conector Micro SD', check_micro_SD, 1, 8)
 criar_selecao('Serial RS232', check_RS232, 1, 9)
 criar_selecao('Sensor de temperatura I²C', check_I2C, 1, 10)
 criar_selecao('10/100 Ethernet PHY', check_Ethernet, 1, 11)
+criar_selecao('SW', check_SW, 1, 12)
 
 criar_selecao('7-Segmentos X 2', check_segmentos, 2, 2)
 criar_selecao('Chave X4', check_chave, 2, 3)
@@ -608,7 +614,7 @@ criar_selecao('ADC', check_ADC, 2, 8)
 criar_selecao('LED RGB', check_LED_RGB, 2, 9)
 criar_selecao('FLASH 64Mbit', check_flash_64, 2, 10)
 criar_selecao('PMOD x2', check_PMOD, 2, 11)
-
+criar_selecao('ConnectGPIO', check_ConnectGPIO, 2, 12)
 
 window.resizable(False, False)
 window.mainloop()

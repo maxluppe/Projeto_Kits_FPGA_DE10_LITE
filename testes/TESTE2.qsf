@@ -1,0 +1,161 @@
+#============================================================
+# Build by Terasic System Builder
+#============================================================
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE30F23C7
+set_global_assignment -name TOP_LEVEL_ENTITY "TESTE2"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:04:41 October 25,2023"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_global_assignment -name VHDL_FILE ../src/TESTE2.vhd
+set_global_assignment -name SDC_FILE TESTE2.sdc
+
+#============================================================
+# LED RGB
+#============================================================
+set_location_assignment PIN_D7 -to LED_R
+set_location_assignment PIN_E7 -to LED_B
+set_location_assignment PIN_D6 -to LED_G
+
+#============================================================
+# Temperature Sensor
+#============================================================
+set_location_assignment PIN_Y21 -to I2C_SDA
+set_location_assignment PIN_AA21 -to I2C_SCL
+set_location_assignment PIN_AA20 -to I2C_OVERTEMPn
+
+#============================================================
+# ETHERNET
+#============================================================
+set_location_assignment PIN_F22 -to ETH_COL
+set_location_assignment PIN_F21 -to ETH_CRS
+set_location_assignment PIN_A18 -to ETH_MDC
+set_location_assignment PIN_B17 -to ETH_MDIO
+set_location_assignment PIN_G11 -to ETH_RSTn
+set_location_assignment PIN_C20 -to ETH_RXC
+set_location_assignment PIN_B18 -to ETH_RXD[3]
+set_location_assignment PIN_A19 -to ETH_RXD[2]
+set_location_assignment PIN_B19 -to ETH_RXD[1]
+set_location_assignment PIN_A20 -to ETH_RXD[0]
+set_location_assignment PIN_B20 -to ETH_RXDV
+set_location_assignment PIN_B21 -to ETH_RXER
+set_location_assignment PIN_C21 -to ETH_TXC
+set_location_assignment PIN_E22 -to ETH_TXD[3]
+set_location_assignment PIN_E21 -to ETH_TXD[2]
+set_location_assignment PIN_D22 -to ETH_TXD[1]
+set_location_assignment PIN_D21 -to ETH_TXD[0]
+set_location_assignment PIN_C22 -to ETH_TXEN
+set_location_assignment PIN_B22 -to ETH_TXER
+
+#============================================================
+# PMOD
+#============================================================
+set_location_assignment PIN_AB5 -to PROTO_A[0]
+set_location_assignment PIN_AB4 -to PROTO_A[1]
+set_location_assignment PIN_AB3 -to PROTO_A[2]
+set_location_assignment PIN_AA1 -to PROTO_A[3]
+set_location_assignment PIN_AA7 -to PROTO_A[4]
+set_location_assignment PIN_AA5 -to PROTO_A[5]
+set_location_assignment PIN_AA4 -to PROTO_A[6]
+set_location_assignment PIN_AA3 -to PROTO_A[7]
+set_location_assignment PIN_AB10 -to PROTO_B[0]
+set_location_assignment PIN_AB9 -to PROTO_B[1]
+set_location_assignment PIN_AB8 -to PROTO_B[2]
+set_location_assignment PIN_AB7 -to PROTO_B[3]
+set_location_assignment PIN_Y10 -to PROTO_B[4]
+set_location_assignment PIN_AA10 -to PROTO_B[5]
+set_location_assignment PIN_AA9 -to PROTO_B[6]
+set_location_assignment PIN_AA8 -to PROTO_B[7]
+
+#============================================================
+# SW
+#============================================================
+set_location_assignment PIN_V21 -to SW[0]
+set_location_assignment PIN_W22 -to SW[1]
+set_location_assignment PIN_W21 -to SW[2]
+set_location_assignment PIN_Y22 -to SW[3]
+
+#============================================================
+# GPIO
+#============================================================
+set_location_assignment PIN_G21 -to GPIO0_CLKIN[0]
+set_location_assignment PIN_G22 -to GPIO0_CLKIN[1]
+set_location_assignment PIN_K18 -to GPIO0_CLKOUT[0]
+set_location_assignment PIN_M22 -to GPIO0_CLKOUT[1]
+set_location_assignment PIN_E16 -to GPIO0_D[0]
+set_location_assignment PIN_H22 -to GPIO0_D[1]
+set_location_assignment PIN_F16 -to GPIO0_D[2]
+set_location_assignment PIN_F19 -to GPIO0_D[3]
+set_location_assignment PIN_H21 -to GPIO0_D[4]
+set_location_assignment PIN_J22 -to GPIO0_D[5]
+set_location_assignment PIN_F20 -to GPIO0_D[6]
+set_location_assignment PIN_H19 -to GPIO0_D[7]
+set_location_assignment PIN_J21 -to GPIO0_D[8]
+set_location_assignment PIN_K21 -to GPIO0_D[9]
+set_location_assignment PIN_H20 -to GPIO0_D[10]
+set_location_assignment PIN_H18 -to GPIO0_D[11]
+set_location_assignment PIN_L22 -to GPIO0_D[12]
+set_location_assignment PIN_L21 -to GPIO0_D[13]
+set_location_assignment PIN_J18 -to GPIO0_D[14]
+set_location_assignment PIN_M21 -to GPIO0_D[15]
+set_location_assignment PIN_K19 -to GPIO0_D[16]
+set_location_assignment PIN_M19 -to GPIO0_D[17]
+set_location_assignment PIN_N22 -to GPIO0_D[18]
+set_location_assignment PIN_N21 -to GPIO0_D[19]
+set_location_assignment PIN_M20 -to GPIO0_D[20]
+set_location_assignment PIN_K17 -to GPIO0_D[21]
+set_location_assignment PIN_N20 -to GPIO0_D[22]
+set_location_assignment PIN_N19 -to GPIO0_D[23]
+set_location_assignment PIN_P22 -to GPIO0_D[24]
+set_location_assignment PIN_P21 -to GPIO0_D[25]
+set_location_assignment PIN_N18 -to GPIO0_D[26]
+set_location_assignment PIN_R19 -to GPIO0_D[27]
+set_location_assignment PIN_R22 -to GPIO0_D[28]
+set_location_assignment PIN_R21 -to GPIO0_D[29]
+set_location_assignment PIN_R18 -to GPIO0_D[30]
+set_location_assignment PIN_T18 -to GPIO0_D[31]
+set_location_assignment PIN_A11 -to GPIO1_CLKIN[0]
+set_location_assignment PIN_B11 -to GPIO1_CLKIN[1]
+set_location_assignment PIN_F15 -to GPIO1_CLKOUT[0]
+set_location_assignment PIN_D19 -to GPIO1_CLKOUT[1]
+set_location_assignment PIN_E11 -to GPIO1_D[0]
+set_location_assignment PIN_F11 -to GPIO1_D[1]
+set_location_assignment PIN_E12 -to GPIO1_D[2]
+set_location_assignment PIN_D13 -to GPIO1_D[3]
+set_location_assignment PIN_E13 -to GPIO1_D[4]
+set_location_assignment PIN_F13 -to GPIO1_D[5]
+set_location_assignment PIN_G13 -to GPIO1_D[6]
+set_location_assignment PIN_F14 -to GPIO1_D[7]
+set_location_assignment PIN_E14 -to GPIO1_D[8]
+set_location_assignment PIN_C15 -to GPIO1_D[9]
+set_location_assignment PIN_D15 -to GPIO1_D[10]
+set_location_assignment PIN_E15 -to GPIO1_D[11]
+set_location_assignment PIN_C17 -to GPIO1_D[12]
+set_location_assignment PIN_D17 -to GPIO1_D[13]
+set_location_assignment PIN_C19 -to GPIO1_D[14]
+set_location_assignment PIN_D20 -to GPIO1_D[15]
+set_location_assignment PIN_G15 -to GPIO1_D[16]
+set_location_assignment PIN_F17 -to GPIO1_D[17]
+set_location_assignment PIN_G18 -to GPIO1_D[18]
+set_location_assignment PIN_G17 -to GPIO1_D[19]
+set_location_assignment PIN_H17 -to GPIO1_D[20]
+set_location_assignment PIN_H16 -to GPIO1_D[21]
+set_location_assignment PIN_G16 -to GPIO1_D[22]
+set_location_assignment PIN_J17 -to GPIO1_D[23]
+set_location_assignment PIN_M16 -to GPIO1_D[24]
+set_location_assignment PIN_P17 -to GPIO1_D[25]
+set_location_assignment PIN_P20 -to GPIO1_D[26]
+set_location_assignment PIN_R17 -to GPIO1_D[27]
+set_location_assignment PIN_R20 -to GPIO1_D[28]
+set_location_assignment PIN_R16 -to GPIO1_D[29]
+set_location_assignment PIN_T17 -to GPIO1_D[30]
+set_location_assignment PIN_T16 -to GPIO1_D[31]
+
