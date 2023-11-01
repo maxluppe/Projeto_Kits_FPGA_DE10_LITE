@@ -1,9 +1,9 @@
-# Projeto_Kits_FPGA
+# Projeto_Kits_FPGA_DE10_LITE
 *Objetivo:*
 Fazer de forma automática a estrutura base utilizada para programar nos kits FPGA.
 
 O intuito é conseguir gerar os arquivos bases tanto em verilog, quanto em VHDL, de
-dois kits diferentes o DE10_LITE e o MERCURIOIV, esse projeto é para a disciplina
+dois kits diferentes o DE10_LITE, esse projeto é para a disciplina
 de Laboratório de Sistemas Digitais I da USP de São Carlos do curso de Engenharia
 Elétrica e tem como intuito ajudar na reestruturação dessa disciplina.
 
