@@ -1,42 +1,81 @@
 #============================================================
 # SDRAM
 #============================================================
-set_location_assignment PIN_E4 -to SDRAM_D[15]
-set_location_assignment PIN_G5 -to SDRAM_D[14]
-set_location_assignment PIN_G4 -to SDRAM_D[13]
-set_location_assignment PIN_G3 -to SDRAM_D[12]
-set_location_assignment PIN_J3 -to SDRAM_D[11]
-set_location_assignment PIN_H5 -to SDRAM_D[10]
-set_location_assignment PIN_H6 -to SDRAM_D[9]
-set_location_assignment PIN_J2 -to SDRAM_D[8]
-set_location_assignment PIN_F1 -to SDRAM_D[7]
-set_location_assignment PIN_F2 -to SDRAM_D[6]
-set_location_assignment PIN_E3 -to SDRAM_D[5]
-set_location_assignment PIN_D2 -to SDRAM_D[4]
-set_location_assignment PIN_C1 -to SDRAM_D[3]
-set_location_assignment PIN_C2 -to SDRAM_D[2]
-set_location_assignment PIN_B1 -to SDRAM_D[1]
-set_location_assignment PIN_B2 -to SDRAM_D[0]
-set_location_assignment PIN_E5 -to SDRAM_CLK
-set_location_assignment PIN_M5 -to SDRAM_CKE
-set_location_assignment PIN_H2 -to SDRAM_BA[1]
-set_location_assignment PIN_J4 -to SDRAM_BA[0]
-set_location_assignment PIN_L6 -to SDRAM_A[12]
-set_location_assignment PIN_M3 -to SDRAM_A[11]
-set_location_assignment PIN_P1 -to SDRAM_A[10]
-set_location_assignment PIN_M2 -to SDRAM_A[9]
-set_location_assignment PIN_N1 -to SDRAM_A[8]
-set_location_assignment PIN_M4 -to SDRAM_A[7]
-set_location_assignment PIN_N5 -to SDRAM_A[6]
-set_location_assignment PIN_P5 -to SDRAM_A[5]
-set_location_assignment PIN_P4 -to SDRAM_A[4]
-set_location_assignment PIN_R2 -to SDRAM_A[3]
-set_location_assignment PIN_P3 -to SDRAM_A[2]
-set_location_assignment PIN_R1 -to SDRAM_A[1]
-set_location_assignment PIN_P2 -to SDRAM_A[0]
-set_location_assignment PIN_N2 -to SDRAM_RAS_N
-set_location_assignment PIN_M1 -to SDRAM_CAS_N
-set_location_assignment PIN_H1 -to SDRAM_CS_N
-set_location_assignment PIN_E1 -to SDRAM_DQM[0]
-set_location_assignment PIN_J5 -to SDRAM_DQM[1]
-set_location_assignment PIN_J1 -to SDRAM_WE_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_LDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_UDQM
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
+set_location_assignment PIN_U17 -to DRAM_ADDR[0]
+set_location_assignment PIN_W19 -to DRAM_ADDR[1]
+set_location_assignment PIN_V18 -to DRAM_ADDR[2]
+set_location_assignment PIN_U18 -to DRAM_ADDR[3]
+set_location_assignment PIN_U19 -to DRAM_ADDR[4]
+set_location_assignment PIN_T18 -to DRAM_ADDR[5]
+set_location_assignment PIN_T19 -to DRAM_ADDR[6]
+set_location_assignment PIN_R18 -to DRAM_ADDR[7]
+set_location_assignment PIN_P18 -to DRAM_ADDR[8]
+set_location_assignment PIN_P19 -to DRAM_ADDR[9]
+set_location_assignment PIN_T20 -to DRAM_ADDR[10]
+set_location_assignment PIN_P20 -to DRAM_ADDR[11]
+set_location_assignment PIN_R20 -to DRAM_ADDR[12]
+set_location_assignment PIN_T21 -to DRAM_BA[0]
+set_location_assignment PIN_T22 -to DRAM_BA[1]
+set_location_assignment PIN_U21 -to DRAM_CAS_N
+set_location_assignment PIN_N22 -to DRAM_CKE
+set_location_assignment PIN_L14 -to DRAM_CLK
+set_location_assignment PIN_U20 -to DRAM_CS_N
+set_location_assignment PIN_Y21 -to DRAM_DQ[0]
+set_location_assignment PIN_Y20 -to DRAM_DQ[1]
+set_location_assignment PIN_AA22 -to DRAM_DQ[2]
+set_location_assignment PIN_AA21 -to DRAM_DQ[3]
+set_location_assignment PIN_Y22 -to DRAM_DQ[4]
+set_location_assignment PIN_W22 -to DRAM_DQ[5]
+set_location_assignment PIN_W20 -to DRAM_DQ[6]
+set_location_assignment PIN_V21 -to DRAM_DQ[7]
+set_location_assignment PIN_P21 -to DRAM_DQ[8]
+set_location_assignment PIN_J22 -to DRAM_DQ[9]
+set_location_assignment PIN_H21 -to DRAM_DQ[10]
+set_location_assignment PIN_H22 -to DRAM_DQ[11]
+set_location_assignment PIN_G22 -to DRAM_DQ[12]
+set_location_assignment PIN_G20 -to DRAM_DQ[13]
+set_location_assignment PIN_G19 -to DRAM_DQ[14]
+set_location_assignment PIN_F22 -to DRAM_DQ[15]
+set_location_assignment PIN_V22 -to DRAM_LDQM
+set_location_assignment PIN_U22 -to DRAM_RAS_N
+set_location_assignment PIN_J21 -to DRAM_UDQM
+set_location_assignment PIN_V20 -to DRAM_WE_N

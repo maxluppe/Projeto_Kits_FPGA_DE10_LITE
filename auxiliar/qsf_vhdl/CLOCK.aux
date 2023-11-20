@@ -1,18 +1,9 @@
 #============================================================
 # CLOCK
 #============================================================
-set_location_assignment PIN_T1 -to CLOCK_50MHz
-set_location_assignment PIN_T2 -to CLOCK1_50MHz
-set_location_assignment PIN_T21 -to CLOCK2_50MHz
-set_location_assignment PIN_T22 -to CLOCK3_50MHz
-set_location_assignment PIN_A12 -to SMA_CLKIN
-set_location_assignment PIN_B12 -to SMA_CLKIN1
-set_location_assignment PIN_E6 -to SMA_CLKOUT
-set_location_assignment PIN_G22 -to GPIO0_CLKIN[1]
-set_location_assignment PIN_G21 -to GPIO0_CLKIN[0]
-set_location_assignment PIN_B11 -to GPIO1_CLKIN[1]
-set_location_assignment PIN_A11 -to GPIO1_CLKIN[0]
-set_location_assignment PIN_M22 -to GPIO0_CLKOUT[1]
-set_location_assignment PIN_K18 -to GPIO0_CLKOUT[0]
-set_location_assignment PIN_D19 -to GPIO1_CLKOUT[1]
-set_location_assignment PIN_F15 -to GPIO1_CLKOUT[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CLK_10
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAX10_CLK1_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MAX10_CLK2_50
+set_location_assignment PIN_N5 -to ADC_CLK_10
+set_location_assignment PIN_P11 -to MAX10_CLK1_50
+set_location_assignment PIN_N14 -to MAX10_CLK2_50
