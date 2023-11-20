@@ -197,50 +197,25 @@ def gerar_arquivo_qsf(diretorio=''):
         f.close()
 
     with open(nome_arquivo, 'w') as qsf:
+        qsf.write('#============================================================\n'
+        '# Build by Terasic System Builder\n'
+        '#============================================================\n\n')
+        qsf.write('set_global_assignment -name FAMILY "Cyclone IV E"\n')
+        qsf.write('set_global_assignment -name DEVICE EP4CE30F23C7\n')
+        qsf.write('set_global_assignment -name TOP_LEVEL_ENTITY "{}"\n'.format(projeto))
+        qsf.write('set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"\n')
+        qsf.write('set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"\n')
+        qsf.write('set_global_assignment -name PROJECT_CREATION_TIME_DATE "{}"\n'.format(data.strftime('%H:%M:%S %B %d,%Y')))
+        qsf.write('set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files\n')
+        qsf.write('set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0\n')
+        qsf.write('set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85\n')
+        qsf.write('set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1\n')
+        qsf.write('set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V\n')
+        qsf.write('set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"\n')
+        qsf.write('set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation\n')
 
-        if check_vhdl.get():
-            qsf.write('#============================================================\n'
-                    '# Build by Terasic System Builder\n'
-                    '#============================================================\n\n')
-            qsf.write('set_global_assignment -name FAMILY "Cyclone IV E"\n')
-            qsf.write('set_global_assignment -name DEVICE EP4CE30F23C7\n')
-            qsf.write('set_global_assignment -name TOP_LEVEL_ENTITY "{}"\n'.format(projeto))
-            qsf.write('set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"\n')
-            qsf.write('set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"\n')
-            qsf.write('set_global_assignment -name PROJECT_CREATION_TIME_DATE "{}"\n'.format(data.strftime('%H:%M:%S %B %d,%Y')))
-            qsf.write('set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files\n')
-            qsf.write('set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0\n')
-            qsf.write('set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85\n')
-            qsf.write('set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1\n')
-            qsf.write('set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V\n')
-            qsf.write('set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"\n')
-            qsf.write('set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation\n')
-
-            qsf.write('set_global_assignment -name VHDL_FILE ../src/{}.vhd\n'.format(projeto))
-            qsf.write('set_global_assignment -name SDC_FILE {}.sdc\n\n'.format(projeto))
-
-            #qsf.write('set_global_assignment -name SDC_FILE {}.SDC\n'.format(projeto))
-
-        if check_v.get():
-            qsf.write('#============================================================\n'
-            '# Build by Terasic System Builder\n'
-            '#============================================================\n\n')
-            qsf.write('set_global_assignment -name FAMILY "Cyclone IV E"\n')
-            qsf.write('set_global_assignment -name DEVICE EP4CE30F23C7\n')
-            qsf.write('set_global_assignment -name TOP_LEVEL_ENTITY "{}"\n'.format(projeto))
-            qsf.write('set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"\n')
-            qsf.write('set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"\n')
-            qsf.write('set_global_assignment -name PROJECT_CREATION_TIME_DATE "{}"\n'.format(data.strftime('%H:%M:%S %B %d,%Y')))
-            qsf.write('set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files\n')
-            qsf.write('set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0\n')
-            qsf.write('set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85\n')
-            qsf.write('set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1\n')
-            qsf.write('set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V\n')
-            qsf.write('set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"\n')
-            qsf.write('set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation\n')
-
-            qsf.write('set_global_assignment -name verilog_FILE ../src/{}.vhd\n'.format(projeto))
-            qsf.write('set_global_assignment -name SDC_FILE {}.sdc\n\n'.format(projeto))
+        qsf.write('set_global_assignment -name verilog_FILE ../src/{}.vhd\n'.format(projeto))
+        qsf.write('set_global_assignment -name SDC_FILE {}.sdc\n\n'.format(projeto))
 
                 #qsf.write('set_global_assignment -name SDC_FILE {}.SDC\n'.format(projeto))
 
@@ -330,6 +305,227 @@ def gerar_arquivo_qsf(diretorio=''):
             qsf.write(check_connectGPIO_buffer)
             qsf.write('\n')
 
+def gerar_arquivo_qsf_vhdl(diretorio=''):
+    projeto = get_nome_do_projeto()
+    nome_arquivo = '{}.qsf'.format(projeto)
+    nome_arquivo = diretorio + '/' + nome_arquivo
+    data = datetime.now()
+
+    if check_clock.get():
+        f = open('auxiliar/qsf_vhdl/CLOCK.aux', 'r')
+        clock_buffer = f.read()
+        f.close()
+
+    if check_ext_clock.get():
+        f = open('auxiliar/qsf_vhdl/EXT_CLOCK.aux', 'r')
+        ext_clock_buffer = f.read()
+        f.close()
+
+    if check_chave.get():
+        f = open('auxiliar/qsf_vhdl/SW.aux', 'r')
+        chave_buffer = f.read()
+        f.close()
+
+    if check_button.get():  #KEY
+        f = open('auxiliar/qsf_vhdl/KEY.aux', 'r')
+        button_buffer = f.read()
+        f.close()
+
+    if check_segmentos.get():
+        f = open('auxiliar/qsf_vhdl/DISPLAY.aux', 'r')
+        segmentos_buffer = f.read()
+        f.close()
+
+    if check_LED.get():
+        f = open('auxiliar/qsf_vhdl/LED_MX.aux', 'r')
+        led_buffer = f.read()
+        f.close()
+
+    if check_LED_RGB.get():
+        f = open('auxiliar/qsf_vhdl/LED_RGB.aux', 'r')
+        led_rgb_buffer = f.read()
+        f.close()
+
+    if check_I2C.get():
+        f = open('auxiliar/qsf_vhdl/TEMP_SENS.aux', 'r')
+        i2c_buffer = f.read()
+        f.close()
+
+    if check_LCD.get():
+        f = open('auxiliar/qsf_vhdl/LCD.aux', 'r')
+        lcd_buffer = f.read()
+        f.close()
+
+    if check_VGA.get():
+        f = open('auxiliar/qsf_vhdl/VGA.aux', 'r')
+        vga_buffer = f.read()
+        f.close()
+    # if check_UART.get():
+    #     pass
+
+    # if check_USB.get():
+    #     pass
+
+    if check_ADC.get():
+        f = open('auxiliar/qsf_vhdl/ADC.aux', 'r')
+        adc_buffer = f.read()
+        f.close()
+
+    if check_DAC.get():
+        f = open('auxiliar/qsf_vhdl/DAC.aux', 'r')
+        dac_buffer = f.read()
+        f.close()
+
+    if check_micro_SD.get():
+        f = open('auxiliar/qsf_vhdl/SD_CARD.aux', 'r')
+        micro_sd_buffer = f.read()
+        f.close()
+
+    if check_SDRAM_64.get():
+        f = open('auxiliar/qsf_vhdl/SDRAM.aux', 'r')
+        sdram_64_buffer = f.read()
+        f.close()
+
+    if check_Ethernet.get():
+        f = open('auxiliar/qsf_vhdl/ETHERNET.aux', 'r')
+        ethernet_buffer = f.read()
+        f.close()
+
+    if check_PMOD.get():
+        f = open('auxiliar/qsf_vhdl/PMOD.aux', 'r')
+        pmod_buffer = f.read()
+        f.close()
+
+    if check_GPIO.get():
+        f = open('auxiliar/qsf_vhdl/GPIO.aux', 'r')
+        gpio_buffer = f.read()
+        f.close()
+
+    if check_SA_SB.get():
+        f = open('auxiliar/qsf_vhdl/EXPANSION_KEY.aux', 'r')
+        sa_sb_buffer = f.read()
+        f.close()
+
+    if check_SW.get():
+        f = open('auxiliar/qsf_vhdl/SW.aux', 'r') ##MUDAR AQUI
+        SW_buffer = f.read()
+        f.close()
+
+    if  check_ConnectGPIO.get():
+        f = open('auxiliar/qsf_vhdl/GPIO.aux', 'r') ##MUDAR AQUI
+        check_connectGPIO_buffer = f.read()
+        f.close()
+
+    with open(nome_arquivo, 'w') as qsf:
+
+        qsf.write('#============================================================\n'
+                '# Build by Terasic System Builder\n'
+                '#============================================================\n\n')
+        qsf.write('set_global_assignment -name FAMILY "Cyclone IV E"\n')
+        qsf.write('set_global_assignment -name DEVICE EP4CE30F23C7\n')
+        qsf.write('set_global_assignment -name TOP_LEVEL_ENTITY "{}"\n'.format(projeto))
+        qsf.write('set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"\n')
+        qsf.write('set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"\n')
+        qsf.write('set_global_assignment -name PROJECT_CREATION_TIME_DATE "{}"\n'.format(data.strftime('%H:%M:%S %B %d,%Y')))
+        qsf.write('set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files\n')
+        qsf.write('set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0\n')
+        qsf.write('set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85\n')
+        qsf.write('set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1\n')
+        qsf.write('set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V\n')
+        qsf.write('set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"\n')
+        qsf.write('set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation\n')
+
+        qsf.write('set_global_assignment -name VHDL_FILE ../src/{}.vhd\n'.format(projeto))
+        qsf.write('set_global_assignment -name SDC_FILE {}.sdc\n\n'.format(projeto))
+
+        #qsf.write('set_global_assignment -name SDC_FILE {}.SDC\n'.format(projeto))
+
+        
+        if check_clock.get():
+            qsf.write(clock_buffer)
+            qsf.write('\n')
+
+        if check_ext_clock.get():
+            qsf.write(ext_clock_buffer)
+            qsf.write('\n')
+
+        if check_chave.get():
+            qsf.write(chave_buffer)
+            qsf.write('\n')
+
+        if check_button.get(): #KEY
+            qsf.write(button_buffer)
+            qsf.write('\n')
+
+        if check_segmentos.get():
+            qsf.write(segmentos_buffer)
+            qsf.write('\n')
+
+        if check_LED.get():
+            qsf.write(led_buffer)
+            qsf.write('\n')
+
+        if check_LED_RGB.get():
+            qsf.write(led_rgb_buffer)
+            qsf.write('\n')
+
+        if check_I2C.get():
+            qsf.write(i2c_buffer)
+            qsf.write('\n')
+
+        if check_LCD.get():
+            qsf.write(lcd_buffer)
+            qsf.write('\n')
+
+        if check_VGA.get():
+            qsf.write(vga_buffer)
+            qsf.write('\n')
+
+        # if check_UART.get():
+        #     pass
+
+        # if check_USB.get():
+        #     pass
+
+        if check_ADC.get():
+            qsf.write(adc_buffer)
+            qsf.write('\n')
+
+        if check_DAC.get():
+            qsf.write(dac_buffer)
+            qsf.write('\n')
+
+        if check_micro_SD.get():
+            qsf.write(micro_sd_buffer)
+            qsf.write('\n')
+
+        if check_SDRAM_64.get():
+            qsf.write(sdram_64_buffer)
+            qsf.write('\n')
+
+        if check_Ethernet.get():
+            qsf.write(ethernet_buffer)
+            qsf.write('\n')
+
+        if check_PMOD.get():
+            qsf.write(pmod_buffer)
+            qsf.write('\n')
+
+        if check_GPIO.get():
+            qsf.write(gpio_buffer)
+            qsf.write('\n')
+
+        if check_SW.get():
+            qsf.write(SW_buffer)
+            qsf.write('\n')
+
+        if check_SA_SB.get():
+            qsf.write(sa_sb_buffer)
+            qsf.write('\n')
+
+        if check_ConnectGPIO.get():
+            qsf.write(check_connectGPIO_buffer)
+            qsf.write('\n')
 
 def criar_selecao(label, varialvel, coluna, posicao):
     espacamento = 13
@@ -530,7 +726,10 @@ def gerar_codigo():
     diretorio = get_diretorio_arquivos()
 
     gerar_arquivo_qpf(diretorio)
-    gerar_arquivo_qsf(diretorio)
+    if check_v.get():
+        gerar_arquivo_qsf(diretorio)
+    if check_vhdl.get():
+        gerar_arquivo_qsf_vhdl(diretorio)
     gerar_arquivo_sdc(diretorio)
     if check_v.get():
         gerar_arquivo_v(diretorio)
