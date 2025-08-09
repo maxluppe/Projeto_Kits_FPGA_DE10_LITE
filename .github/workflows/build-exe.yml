@@ -6,21 +6,30 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: |
+
+      - name: Instalar dependências
+        run: |
           pip install --upgrade pip
           pip install pipreqs pyinstaller
           pipreqs . --force
           pip install -r requirements.txt
-      - run: |
+
+      - name: Gerar executável com PyInstaller
+        run: |
           pyinstaller --onefile main.py
         shell: cmd
-      - uses: softprops/action-gh-release@v1
+
+      - name: Salvar executável como artifact
+        uses: actions/upload-artifact@v4
         with:
-          files: dist/*.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: executavel-windows
+          path: dist/*.exe
